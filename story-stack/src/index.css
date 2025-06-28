@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme - Modern, clean palette */
+    --background: 0 0% 100%;
+    --foreground: 224 71% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 46%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 9% 46%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221 83% 53%;
+    --success: 142 76% 36%;
+    --success-foreground: 355 100% 97%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 48 96% 89%;
+    --info: 199 89% 48%;
+    --info-foreground: 210 40% 98%;
+
+    /* Theme transition optimization */
+    --theme-transition-duration: 0.2s;
+    --theme-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    /* Dark theme - Rich, elevated palette */
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 224 71% 4%;
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 213 31% 91%;
+    --muted: 215 28% 17%;
+    --muted-foreground: 217 11% 65%;
+    --accent: 215 28% 17%;
+    --accent-foreground: 213 31% 91%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 213 31% 91%;
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 217 91% 60%;
+    --success: 142 76% 36%;
+    --success-foreground: 355 100% 97%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 48 96% 89%;
+    --info: 199 89% 48%;
+    --info-foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  /* Root element for theme transitions */
+  html {
+    color-scheme: light dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    transition: background-color var(--theme-transition-duration) var(--theme-transition-timing),
+                color var(--theme-transition-duration) var(--theme-transition-timing);
+    will-change: background-color, color;
+    contain: layout style paint;
+  }
+
+  /* Targeted smooth transitions for theme switching - only for elements that need it */
+  [class*="bg-"],
+  [class*="text-"],
+  [class*="border-"],
+  .card,
+  .btn,
+  header,
+  main,
+  aside,
+  nav {
+    transition: background-color var(--theme-transition-duration) var(--theme-transition-timing),
+                border-color var(--theme-transition-duration) var(--theme-transition-timing),
+                color var(--theme-transition-duration) var(--theme-transition-timing);
+    will-change: background-color, border-color, color;
+  }
+
+  /* Prevent transitions on page load */
+  .preload * {
+    transition: none !important;
+  }
+
+  /* Optimize performance during theme transitions */
+  html {
+    color-scheme: light dark;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* SVG icons smooth transitions */
+  svg {
+    transition: fill var(--theme-transition-duration) var(--theme-transition-timing),
+                stroke var(--theme-transition-duration) var(--theme-transition-timing);
+    will-change: fill, stroke;
+  }
+
+  /* Backdrop and overlay transitions */
+  [class*="backdrop-blur"] {
+    transition: backdrop-filter var(--theme-transition-duration) var(--theme-transition-timing);
+  }
+
+  /* Modal and overlay backgrounds */
+  [class*="bg-black/"],
+  [class*="bg-white/"] {
+    transition: background-color var(--theme-transition-duration) var(--theme-transition-timing);
+  }
+
+  /* Modal scroll prevention - handled by useModalScrollLock hook */
+
+  /* Modal container for proper viewport centering */
+  .modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 9999;
+    /* Use viewport units to ensure modal appears in current view */
+    height: 100vh;
+    width: 100vw;
+  }
+
+  /* Ensure modals are properly sized and centered */
+  .modal-container > * {
+    max-height: 90vh;
+    max-width: 100%;
+    margin: auto;
+    /* Ensure modal content is positioned correctly */
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Special handling for large modals */
+  .modal-container > .card-elevated {
+    box-sizing: border-box;
+  }
+
+
+
+  /* Scrollbar styling with smooth transitions */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+    transition: background-color var(--theme-transition-duration) var(--theme-transition-timing);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full;
+    transition: background-color var(--theme-transition-duration) var(--theme-transition-timing);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
+
+@layer components {
+  /* Enhanced button styles */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-soft;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-accent hover:text-accent-foreground;
+  }
+
+  /* Enhanced card styles */
+  .card {
+    @apply bg-card text-card-foreground rounded-xl border border-border shadow-soft;
+  }
+
+  .card-elevated {
+    @apply bg-card text-card-foreground rounded-xl border border-border shadow-medium hover:shadow-large transition-shadow duration-300;
+  }
+
+  /* Loading animation */
+  .loading-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: .5;
+    }
+  }
+
+  /* Scale in animation for floating elements */
+  .animate-scale-in {
+    animation: scale-in 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes scale-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Fade in animation */
+  .animate-fade-in {
+    animation: fade-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Timeline card selection styles */
+  .timeline-card-selectable {
+    position: relative;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .timeline-card-selectable:hover {
+    transform: translateY(-1px);
+  }
+
+  .timeline-card-selectable:active {
+    transform: translateY(0);
+  }
+
+  /* Subtle selection glow effect */
+  .timeline-card-selected {
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.3),
+                0 4px 12px hsl(var(--primary) / 0.15);
+  }
+}
