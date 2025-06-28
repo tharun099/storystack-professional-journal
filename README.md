@@ -132,24 +132,13 @@ Visit `http://localhost:5173` to launch the app.
 
 ---
 
-## 📸 Screenshots (Coming Soon)
+## 📸 Screenshots
 
 - 📅 Dashboard Overview  
 
 ![StoryStack-06-28-2025_02_26_PM](https://github.com/user-attachments/assets/aad52881-24da-4afd-8ca1-a4b7225ac2f5)
 
 
----
-
-## 📣 Social Sharing Strategy
-
-**Key Messages**:
-- “Turn daily wins into career gold”
-- “Your achievements, amplified by AI”
-- “From scattered notes to compelling narratives”
-
-**Hashtags**:  
-#CareerGrowth #ProfessionalDevelopment #AchievementTracking #ResumeAI #StoryStack #CareerAnalytics
 
 ---
 
