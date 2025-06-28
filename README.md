@@ -135,14 +135,9 @@ Visit `http://localhost:5173` to launch the app.
 ## 📸 Screenshots (Coming Soon)
 
 - 📅 Dashboard Overview  
-- ⚡ Quick Entry Modal  
-- 📈 Career Insights Panel  
-- 📄 Resume & LinkedIn Generators  
-- 📤 Export Options  
-- 📱 Responsive Mobile View  
-- 🌙 Dark Mode Showcase  
 
----
+![StoryStack-06-28-2025_02_26_PM](https://github.com/user-attachments/assets/aad52881-24da-4afd-8ca1-a4b7225ac2f5)
+
 
 ---
 
@@ -161,8 +156,6 @@ Visit `http://localhost:5173` to launch the app.
 ## 📄 License
 
 This project is licensed under the **MIT License** – see the [LICENSE](./LICENSE) file for details.
-
----
 
 
 ---
